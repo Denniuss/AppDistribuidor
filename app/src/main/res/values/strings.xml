@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AppDistribuidor</string>
+    <string name="title_activity_lista_pedidos_grid_view">activity_lista_pedidosGridView</string>
 </resources>

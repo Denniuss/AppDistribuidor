@@ -3,8 +3,10 @@ package com.newmantech.appdistribuidor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,11 +33,23 @@ public class ListaPedidosActivity extends AppCompatActivity {
         names.add("Raquel");
         names.add("Indurama");
         names.add("Talma");
+        names.add("Jose");
+        names.add("Manuel");
+        names.add("Maria");
+        names.add("Raquel");
+        names.add("Indurama");
+        names.add("Talma");
+        names.add("Jose");
+        names.add("Manuel");
+        names.add("Maria");
+        names.add("Raquel");
+        names.add("Indurama");
+        names.add("Talma");
         //Adaptador, la forma visual en que mostraremos nuestros datos
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
 
         //Enlazamos el adaptador con nuestro List View
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -43,5 +57,10 @@ public class ListaPedidosActivity extends AppCompatActivity {
                 Toast.makeText(ListaPedidosActivity.this, "Clicked: "+names.get(position), Toast.LENGTH_LONG).show();
             }
         });
+
+        //Enlazamos con nuestro adaptador
+        DetallePedidoAdapter detallePedidoAdapter = new DetallePedidoAdapter(this,R.layout.list_pedido_item,names);
+        listView.setAdapter(detallePedidoAdapter);
     }
 }
+
