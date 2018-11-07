@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return names.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -46,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public ViewHolder(View v){
             super(v);
-            this.textViewName = itemView.findViewById(R.id.textViewName);
+            this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
         }
 
         public void bind(final String name, final OnItemClickListener Listener){
@@ -58,11 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 }
             });
         }
-
-
     }
-
-
 
     public interface OnItemClickListener{
         void onItemClick(String name,int position);
