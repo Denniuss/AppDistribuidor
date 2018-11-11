@@ -20,8 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetalleActivity"
+            android:label="@string/title_activity_bio"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newmantech.appdistribuidor.MainActivity" />
+        </activity>
         <activity android:name=".ListaPedidosActivity"></activity>
-        <activity android:name=".DetalleActivity"></activity>
     </application>
 
 </manifest>

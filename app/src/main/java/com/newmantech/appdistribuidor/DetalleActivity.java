@@ -33,8 +33,9 @@ public class DetalleActivity extends AppCompatActivity {
         direccion.setText("Direccion: " + getIntent().getExtras().getString("curDireccion"));
         distrito.setText("Distrito: " + getIntent().getExtras().getString("curDistrito"));
         estado.setText("Estado: " + getIntent().getExtras().getString("curEstado"));
+        imagen.setImageResource(getIntent().getExtras().getInt("curImagen"));
 
-        Picasso.with(imagen.getContext())
-                .load(getIntent().getExtras().getString("curImagen")).into(imagen);
+        //Picasso.with(imagen.getContext())
+          //      .load(getIntent().getExtras().getString("curImagen")).into(imagen);
     }
 }

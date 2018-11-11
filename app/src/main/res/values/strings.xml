@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">AppDistribuidor</string>
     <string name="title_activity_lista_pedidos_grid_view">activity_lista_pedidosGridView</string>
+    <string name="title_activity_bio">Biografia</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="geo_latitud">Latitud</string>
+    <string name="geo_longitud">Longitud</string>
+    <string name="geo_btnUbicacion">Obtener Ubicación</string>
+    <string name="geo_btnMapa">En mapa</string>
+    <string name="geo_entercords">Ingrese las coordenadas</string>
 </resources>

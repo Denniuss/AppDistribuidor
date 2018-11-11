@@ -47,6 +47,8 @@ public class Pedido {
     public void setDescripcion(String descripcion){ this.descripcion = descripcion;}
     public String getEstado(){ return estado; }
     public void setEstado(String estado){ this.estado = estado;}
+    public String getLatitud(){ return latitud;}
+    public void setLatitud(String latitud){ this.latitud = latitud;}
     public String getLongitud(){ return longitud;}
     public void setLongitud(String longitud){ this.longitud = longitud;}
 }

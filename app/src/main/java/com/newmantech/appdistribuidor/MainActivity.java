@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FillPersons();
+        FillPedidos();
     }
 
-    private void FillPersons(){
+    private void FillPedidos(){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         lista.enqueue(new Callback<List<Distribucion>>() {
             @Override
             public void onResponse(Call<List<Distribucion>> call, Response<List<Distribucion>> response) {
-                Log.i("OMAR onResponse chamado", "onResponse: ");
+                Log.i("onResponse chamado", "onResponse: ");
 
                 if(response.isSuccessful()) {
 
@@ -85,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Distribucion>> call, Throwable t) {
-                Log.e("OMAR onFaillure chamado ", t.getMessage());
+                Log.e("onFaillure chamado ", t.getMessage());
             }
         });
 
     }
+
 }
