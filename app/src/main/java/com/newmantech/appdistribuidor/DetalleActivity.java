@@ -36,7 +36,7 @@ public class DetalleActivity extends AppCompatActivity {
         distrito.setText("Distrito: " + getIntent().getExtras().getString("curDistrito"));
         estado.setText("Estado: " + getIntent().getExtras().getString("curEstado"));
         imagen.setImageResource(getIntent().getExtras().getInt("curImagen"));
-        idpedido.setText(getIntent().getExtras().getInt("curIdpedido"));
+        idpedido.setText(getIntent().getExtras().getString("curIdpedido"));
 
         //Picasso.with(imagen.getContext())
           //      .load(getIntent().getExtras().getString("curImagen")).into(imagen);

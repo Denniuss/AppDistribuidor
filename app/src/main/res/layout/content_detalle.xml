@@ -74,7 +74,8 @@
                     android:gravity="center_horizontal"
                     android:paddingTop="10dp"
                     android:text="Idpedido"
-                    android:id="@+id/idpedido"/>
+                    android:id="@+id/idpedido"
+                    android:visibility="invisible"/>
             </LinearLayout>
         </LinearLayout>
 
