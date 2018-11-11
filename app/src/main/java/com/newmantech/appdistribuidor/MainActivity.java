@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FillPersons();
+        FillPedidos();
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PedidosAdapter(items);
         recycler.setAdapter(adapter);
     }
-    private void FillPersons(){
+    private void FillPedidos(){
         items.add(new Pedido(R.drawable.face01, "Marlon Leandro", "Av. Chimu 412 Urb. Zarate", "SJL", "Aniversario","Pendiente","-12.02456","-77.00057"));
         items.add(new Pedido(R.drawable.face02, "Juan Perez", "Av. Chimu 413 Urb. Zarate", "SJL", "Cumpleaños","Pendiente","-12.070118","-77.029274"));
         items.add(new Pedido(R.drawable.face03, "Carlos Gonzales", "Av. Chimu 414 Urb. Zarate", "SJL", "Boda","Pendiente","-12.058746","-77.12736"));
