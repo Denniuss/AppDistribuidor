@@ -14,6 +14,7 @@ public class DetalleActivity extends AppCompatActivity {
     public TextView direccion;
     public TextView distrito;
     public TextView estado;
+    public TextView idpedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,14 @@ public class DetalleActivity extends AppCompatActivity {
         distrito = (TextView) findViewById(R.id.distrito);
         estado = (TextView) findViewById(R.id.estado);
         imagen = (ImageView) findViewById(R.id.imagen);
+        idpedido = (TextView) findViewById(R.id.idpedido);
 
         cliente.setText(getIntent().getExtras().getString("curCliente"));
         direccion.setText("Direccion: " + getIntent().getExtras().getString("curDireccion"));
         distrito.setText("Distrito: " + getIntent().getExtras().getString("curDistrito"));
         estado.setText("Estado: " + getIntent().getExtras().getString("curEstado"));
         imagen.setImageResource(getIntent().getExtras().getInt("curImagen"));
+        idpedido.setText(getIntent().getExtras().getInt("curIdpedido"));
 
         //Picasso.with(imagen.getContext())
           //      .load(getIntent().getExtras().getString("curImagen")).into(imagen);

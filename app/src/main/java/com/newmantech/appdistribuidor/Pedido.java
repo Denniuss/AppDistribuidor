@@ -10,9 +10,11 @@ public class Pedido {
     private int imagen;
     private String latitud;
     private String longitud;
+    private int idpedido;
 
-    public Pedido(/*String imagenurl*/ int imagen,String cliente, String direccion, String distrito, String descripcion, String estado, String latitud, String longitud)
+    public Pedido(/*String imagenurl*/int idpedido, int imagen,String cliente, String direccion, String distrito, String descripcion, String estado, String latitud, String longitud)
     {
+        this.idpedido = idpedido;
         this.cliente = cliente;
         this.direccion = direccion;
         this.distrito = distrito;
@@ -30,13 +32,10 @@ public class Pedido {
     public void setImagenurl(String imagenurl) {
         this.imagenurl = imagenurl;
     }*/
-    public int getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
-    }
+    public int getIdpedido(){return idpedido;}
+    public void setIdpedido(int idpedido){this.idpedido = idpedido;}
+    public int getImagen(){return imagen;}
+    public void setImagen(int imagen){this.imagen = imagen;}
     public String getCliente(){ return cliente; }
     public void setCliente(String cliente){ this.cliente = cliente;}
     public String getDireccion(){ return direccion; }

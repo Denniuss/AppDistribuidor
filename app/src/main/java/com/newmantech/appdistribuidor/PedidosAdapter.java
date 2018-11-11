@@ -23,6 +23,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
         public TextView direccion;
         public TextView distrito;
         public TextView estado;
+        public TextView idpedido;
 
         public PedidoViewHolder(View v) {
 
@@ -33,6 +34,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
             direccion = (TextView) v.findViewById(R.id.direccion);
             distrito = (TextView) v.findViewById(R.id.distrito);
             estado = (TextView) v.findViewById(R.id.estado);
+            idpedido = (TextView) v.findViewById(R.id.idpedido);
         }
     }
 
@@ -66,6 +68,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
         viewHolder.direccion.setText("Dirección: " + items.get(i).getDireccion());
         viewHolder.distrito.setText("Distrito: " + String.valueOf(items.get(i).getDistrito()));
         viewHolder.estado.setText("Estado: " + String.valueOf(items.get(i).getEstado()));
+        viewHolder.idpedido.setText(String.valueOf(items.get(i).getIdpedido()));
 
         viewHolder.pedidoCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
                 bundle.putString("curDireccion", items.get(i).getDireccion());
                 bundle.putString("curDistrito", items.get(i).getDistrito());
                 bundle.putString("curEstado", items.get(i).getEstado());
+                bundle.putInt("curIdpedido", items.get(i).getIdpedido());
                 Intent iconIntent = new Intent(view.getContext(), DetalleActivity.class);
                 iconIntent.putExtras(bundle);
                 view.getContext().startActivity(iconIntent);

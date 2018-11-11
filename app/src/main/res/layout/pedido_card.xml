@@ -15,45 +15,60 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/imagen"
             android:layout_width="120dp"
-            android:src="@drawable/face01"
             android:layout_height="120dp"
-            android:id="@+id/imagen"/>
+            android:src="@drawable/face01" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="550dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/cliente"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cliente"
-                android:textStyle="bold"
                 android:textSize="18dp"
-                android:id="@+id/cliente"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/direccion"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Direccion"
-                android:id="@+id/direccion"/>
+                android:text="Direccion" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/distrito"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Distrito"
-                android:id="@+id/distrito"/>
+                android:text="Distrito" />
+
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/estado"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="Estado"
-                android:id="@+id/estado"/>
+                android:text="Estado" />
+
+            <TextView
+                android:id="@+id/idpedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="Idpedido"
+                android:visibility="invisible"/>
+
+
         </LinearLayout>
+
     </LinearLayout>
+
+
+
 </android.support.v7.widget.CardView>
