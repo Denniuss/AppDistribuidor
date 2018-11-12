@@ -2,19 +2,24 @@ package com.newmantech.appdistribuidor;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    public Button btnAtender;
+    public Button btnFinalizar;
+    public Button btnIncidente;
     private GoogleMap mMap;
 
     @Override
@@ -25,9 +30,44 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        btnAtender = (Button) findViewById(R.id.btnAtender);
+        btnFinalizar = (Button) findViewById(R.id.btnFinalizar);
+        btnIncidente = (Button) findViewById(R.id.btnIncidente);
+
+        btnAtender.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                AtenderPedido();
+            }
+        });
+
+        btnFinalizar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                FinalizarPedido();
+            }
+        });
+
+        btnIncidente.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Incidente();
+            }
+        });
     }
 
+    private void AtenderPedido(){
 
+    }
+
+    private void FinalizarPedido(){
+
+    }
+
+    private void Incidente(){
+
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -41,6 +81,25 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        UiSettings mapUtils = mMap.getUiSettings();
+        //Habilita el zoom
+        mapUtils.setZoomControlsEnabled(true);
+        //Habilita la brujula
+        mapUtils.setCompassEnabled(true);
+        //Habilita el boton "Mi Ubicacion"
+        mapUtils.setMyLocationButtonEnabled(true);
+        //Habilita la barra de herramientas del mapa
+        mapUtils.setMapToolbarEnabled(true);
+
+        double nLatitud = getIntent().getExtras().getDouble("nLatitud");
+        double nLongitud = getIntent().getExtras().getDouble("nLongitud");
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(nLatitud, nLongitud);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Estoy aquí"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18));
+/*
         mMap.setMinZoomPreference(20);
         mMap.setMaxZoomPreference(20);
 
@@ -97,6 +156,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         });
 
 
+        */
         }
     }
 

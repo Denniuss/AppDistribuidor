@@ -81,6 +81,9 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
                 bundle.putString("curDistrito", items.get(i).getDistrito());
                 bundle.putString("curEstado", items.get(i).getEstado());
                 bundle.putInt("curIdpedido", items.get(i).getIdpedido());
+                bundle.putString("curLatitud", items.get(i).getLatitud());
+                bundle.putString("curLongitud", items.get(i).getLongitud());
+
                 Intent iconIntent = new Intent(view.getContext(), DetalleActivity.class);
                 iconIntent.putExtras(bundle);
                 view.getContext().startActivity(iconIntent);
