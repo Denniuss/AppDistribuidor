@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FinalizarPedidoFragment">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        tools:context="com.newmantech.appdistribuidor.AtenderPedidoMapsActivity" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:paddingTop="400dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnAtender"
+            android:layout_width="110dp"
+            android:layout_height="68dp"
+            android:text="@string/geo_btnAtender"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btnFinalizar"
+            android:layout_width="110dp"
+            android:layout_height="68dp"
+            android:layout_margin="5dp"
+            android:text="@string/geo_btnFinalizar" />
+
+        <Button
+            android:id="@+id/btnIncidente"
+            android:layout_width="110dp"
+            android:layout_height="68dp"
+            android:layout_margin="10dp"
+            android:text="@string/geo_btnIncidente" />
+    </LinearLayout>
+
+</FrameLayout>

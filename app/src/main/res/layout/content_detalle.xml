@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:src="@drawable/face01"
-                android:layout_height="240dp"
+                android:layout_height="200dp"
                 android:id="@+id/imagen"/>
 
             <LinearLayout
@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="5dp"
+                    android:paddingTop="3dp"
                     android:text="Dirección"
                     android:id="@+id/direccion"/>
 
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="10dp"
+                    android:paddingTop="3dp"
                     android:text="Distrito"
                     android:id="@+id/distrito"/>
 
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="10dp"
+                    android:paddingTop="3dp"
                     android:text="Estado"
                     android:id="@+id/estado"/>
 
@@ -72,10 +72,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="10dp"
+                    android:paddingTop="0dp"
                     android:text="Idpedido"
                     android:id="@+id/idpedido"
                     android:visibility="invisible"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/btnMapa"
+                        android:layout_width="130dp"
+                        android:layout_height="68dp"
+                        android:layout_margin="7dp"
+                        android:text="@string/geo_btnMapa" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="0dp"
+                    android:textColor="@color/cardview_shadow_end_color"
+                    android:text="Latitud"
+                    android:id="@+id/latitud"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="0dp"
+                    android:textColor="@color/cardview_shadow_end_color"
+                    android:text="Longitud"
+                    android:id="@+id/longitud"/>
+
+
             </LinearLayout>
         </LinearLayout>
 
