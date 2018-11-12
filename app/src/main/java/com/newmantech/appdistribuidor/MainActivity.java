@@ -25,16 +25,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lManager;
     private Context contexto = this;
 
-    private final String baseUrl = "http://192.168.1.8:8077/";
+    private final String baseUrl = "http://192.168.1.14:8077/";
     List<Distribucion> listaDistribucion = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //FillPedidos();
+        FillPedidos();
         //finalizarPedido(baseUrl);
-        registrarIncidencia(baseUrl);
+        //registrarIncidencia(baseUrl);
     }
 
     private static void registrarIncidencia(String baseUrl){
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     listaDistribucion = response.body();
 
                     for(Distribucion dis : listaDistribucion ){
-                        Log.i("CLIENTE  ", "onResponse: " + dis.getCliente());
+                        Log.i("CLIENTE  ", "onResponse: " + dis.getCliente()+"-"+dis.getIdPedido());
 
                         items.add(new Pedido(dis.getIdPedido(), R.drawable.face01, dis.getCliente(), dis.getDireccion(), dis.getDistrito(), dis.getDescripcion(),dis.getEstado(),dis.getLatitud(),dis.getLongitud(),""));
                     }
