@@ -3,6 +3,7 @@ package com.newmantech.appdistribuidor;
 import android.app.Dialog;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.newmantech.appdistribuidor.utils.Utilitario;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     public Button btnAtender;
@@ -28,6 +36,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     public Dialog dlgFinalizarPedido;
     public Dialog dlgRegistrarIndicencia;
     public TextView idpedido;
+    public EditText edtObservaciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +83,6 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     }
 
     public void ShowFinalizarPopup(){
-        EditText edtObservaciones;
         TextView txtclose;
         Button btnFinalizarPedido;
         dlgFinalizarPedido.setContentView(R.layout.finalizarpopup);
@@ -87,10 +95,40 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
                 dlgFinalizarPedido.dismiss();
             }
         });
+
         btnFinalizarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Agregar Guardado de finalizacion de Atencion
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl(Utilitario.baseUrl)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+                    DistribucionService distribucionService = retrofit.create(DistribucionService.class);
+                    PedidoPost pedidoTemP = new PedidoPost();
+                    pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
+                    pedidoTemP.setObservacion(edtObservaciones.getText().toString());
+
+                    Call<Integer> resultado = distribucionService.finalizarPedido(pedidoTemP);
+                    resultado.enqueue(new Callback<Integer>() {
+                        @Override
+                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                            Log.i("finalizarPedido ", "onResponse: "+response.code());
+                            Log.i("finalizarPedido message", "onResponse: "+response.message());
+
+                            if(response.isSuccessful()) {
+                                Log.i("FINALIZA_PEDIDO", "onResponse: " + response.body());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Integer> call, Throwable t) {
+                            Log.e("onFaillure chamado ", t.getMessage());
+                        }
+                    });
+
+
+
                 dlgFinalizarPedido.dismiss();
 
                 finish();
@@ -102,7 +140,6 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     }
 
     public void ShowInicdenciaPopup(){
-        EditText edtObservaciones;
         TextView txtclose;
         Button btnGuardarIncidente;
         dlgRegistrarIndicencia.setContentView(R.layout.incidenciapopup);
@@ -119,6 +156,35 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             @Override
             public void onClick(View v) {
                 //Agregar Guardado de incidente de Atencion
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(Utilitario.baseUrl)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                DistribucionService distribucionService = retrofit.create(DistribucionService.class);
+                PedidoPost pedidoTemP = new PedidoPost();
+                pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
+                pedidoTemP.setObservacion(edtObservaciones.getText().toString());
+
+                Call<Integer> resultado = distribucionService.registrarIncidencia(pedidoTemP);
+                resultado.enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        Log.i("registrarIncidencia ", "onResponse: "+response.code());
+                        Log.i("Incidencia message", "onResponse: "+response.message());
+
+                        if(response.isSuccessful()) {
+                            Log.i("INCIDENCIA", "onResponse: " + response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Log.e("onFaillure chamado ", t.getMessage());
+                    }
+                });
+
+
                 dlgRegistrarIndicencia.dismiss();
                 finish();
                 Intent intent = new Intent(AtenderPedidoMapsActivity.this, MainActivity.class);

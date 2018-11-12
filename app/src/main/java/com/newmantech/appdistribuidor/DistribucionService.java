@@ -17,7 +17,7 @@ public interface DistribucionService {
     @POST("distribucion/finalizarPedido")
     Call<Integer> finalizarPedido(@Body PedidoPost pedido);
 
-    @POST("distribucion/registrarIncidencia")
+    @POST("distribucion/registrarIncidencia/")
     Call<Integer> registrarIncidencia(@Body PedidoPost pedido);
 
 }
