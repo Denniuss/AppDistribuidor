@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Distribucion {
 
-    @SerializedName("id_pedido")
+    @SerializedName("idPedido")
     @Expose
     private Integer idPedido;
     @SerializedName("cliente")
@@ -14,21 +14,30 @@ public class Distribucion {
     @SerializedName("direccion")
     @Expose
     private String direccion;
-    @SerializedName("referencia")
+    @SerializedName("distrito")
     @Expose
-    private Object referencia;
-    @SerializedName("estado")
-    @Expose
-    private String estado;
-    @SerializedName("cantidad")
-    @Expose
-    private Object cantidad;
-    @SerializedName("tipo")
-    @Expose
-    private String tipo;
+    private String distrito;
     @SerializedName("descripcion")
     @Expose
     private String descripcion;
+    @SerializedName("estado")
+    @Expose
+    private String estado;
+    @SerializedName("latitud")
+    @Expose
+    private String latitud;
+    @SerializedName("longitud")
+    @Expose
+    private String longitud;
+    @SerializedName("tipo")
+    @Expose
+    private String tipo;
+    @SerializedName("cantidad")
+    @Expose
+    private Integer cantidad;
+    @SerializedName("idUsuario")
+    @Expose
+    private Integer idUsuario;
 
     public Integer getIdPedido() {
         return idPedido;
@@ -54,12 +63,20 @@ public class Distribucion {
         this.direccion = direccion;
     }
 
-    public Object getReferencia() {
-        return referencia;
+    public String getDistrito() {
+        return distrito;
     }
 
-    public void setReferencia(Object referencia) {
-        this.referencia = referencia;
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getEstado() {
@@ -70,12 +87,20 @@ public class Distribucion {
         this.estado = estado;
     }
 
-    public Object getCantidad() {
-        return cantidad;
+    public String getLatitud() {
+        return latitud;
     }
 
-    public void setCantidad(Object cantidad) {
-        this.cantidad = cantidad;
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     public String getTipo() {
@@ -86,12 +111,20 @@ public class Distribucion {
         this.tipo = tipo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

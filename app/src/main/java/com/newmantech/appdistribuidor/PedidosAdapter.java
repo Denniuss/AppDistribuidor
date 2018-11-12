@@ -68,7 +68,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
         viewHolder.direccion.setText("Dirección: " + items.get(i).getDireccion());
         viewHolder.distrito.setText("Distrito: " + String.valueOf(items.get(i).getDistrito()));
         viewHolder.estado.setText("Estado: " + String.valueOf(items.get(i).getEstado()));
-        viewHolder.idpedido.setText(String.valueOf(items.get(i).getIdpedido()));
+        viewHolder.idpedido.setText(String.valueOf(items.get(i).getIdPedido()));
 
         viewHolder.pedidoCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
                 bundle.putString("curDireccion", items.get(i).getDireccion());
                 bundle.putString("curDistrito", items.get(i).getDistrito());
                 bundle.putString("curEstado", items.get(i).getEstado());
-                bundle.putInt("curIdpedido", items.get(i).getIdpedido());
+                bundle.putInt("curIdpedido", items.get(i).getIdPedido());
                 bundle.putString("curLatitud", items.get(i).getLatitud());
                 bundle.putString("curLongitud", items.get(i).getLongitud());
 
