@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -91,6 +92,10 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             public void onClick(View v) {
                 //Agregar Guardado de finalizacion de Atencion
                 dlgFinalizarPedido.dismiss();
+
+                finish();
+                Intent intent = new Intent(AtenderPedidoMapsActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         dlgFinalizarPedido.show();
@@ -115,6 +120,10 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             public void onClick(View v) {
                 //Agregar Guardado de incidente de Atencion
                 dlgRegistrarIndicencia.dismiss();
+                finish();
+                Intent intent = new Intent(AtenderPedidoMapsActivity.this, MainActivity.class);
+                startActivity(intent);
+
             }
         });
         dlgRegistrarIndicencia.show();
