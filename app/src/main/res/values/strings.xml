@@ -10,6 +10,7 @@
     <string name="geo_btnAtender">Atender Pedido</string>
     <string name="geo_btnFinalizar">Finalizar Pedido</string>
     <string name="geo_btnIncidente">Incidencia</string>
+    <string name="geo_btnGuardarIncidente">Guardar Incidencia</string>
     <string name="geo_entercords">Ingrese las coordenadas</string>
     <string name="title_activity_atender_pedido_maps">Map</string>
 

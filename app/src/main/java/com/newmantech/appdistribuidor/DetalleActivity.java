@@ -58,7 +58,7 @@ public class DetalleActivity extends AppCompatActivity {
         distrito.setText("Distrito: " + getIntent().getExtras().getString("curDistrito"));
         estado.setText("Estado: " + getIntent().getExtras().getString("curEstado"));
         imagen.setImageResource(getIntent().getExtras().getInt("curImagen"));
-        idpedido.setText(getIntent().getExtras().getString("curIdpedido"));
+        idpedido.setText(String.valueOf(getIntent().getExtras().getString("curIdpedido")));
         latitud.setText(getIntent().getExtras().getString("curLatitud"));
         longitud.setText(getIntent().getExtras().getString("curLongitud"));
 
@@ -79,6 +79,7 @@ public class DetalleActivity extends AppCompatActivity {
         }else{
             String pLatitud = latitud.getText().toString();
             String pLongitud = longitud.getText().toString();
+            String pidpedido = idpedido.getText().toString();
 
 
             if(!Utilitario.isNumeric(pLatitud)&&!Utilitario.isNumeric(pLongitud)){
@@ -87,10 +88,12 @@ public class DetalleActivity extends AppCompatActivity {
 
                 double nLatitud = Double.parseDouble(pLatitud);
                 double nLongitud= Double.parseDouble(pLongitud);
+                String nidpedido = pidpedido;
 
                 Bundle bundle = new Bundle();
                 bundle.putDouble("nLatitud",nLatitud);
                 bundle.putDouble("nLongitud",nLongitud);
+                bundle.putString("nidpedido",nidpedido);
                 Intent newActivity = new Intent(this,AtenderPedidoMapsActivity.class);
                 newActivity.putExtras(bundle);
                 this.startActivity(newActivity);

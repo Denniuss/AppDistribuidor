@@ -1,9 +1,12 @@
 package com.newmantech.appdistribuidor;
 
+import android.app.Dialog;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,6 +24,9 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     public Button btnFinalizar;
     public Button btnIncidente;
     private GoogleMap mMap;
+    public Dialog dlgFinalizarPedido;
+    public Dialog dlgRegistrarIndicencia;
+    public TextView idpedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,43 +37,104 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        btnAtender = (Button) findViewById(R.id.btnAtender);
-        btnFinalizar = (Button) findViewById(R.id.btnFinalizar);
-        btnIncidente = (Button) findViewById(R.id.btnIncidente);
+        idpedido = (TextView) findViewById(R.id.idpedido);
+        idpedido.setText(getIntent().getExtras().getString("curIdpedido"));
+        //String nidpedido = getIntent().getExtras().getString("nidpedido");
 
+        btnAtender = (Button) findViewById(R.id.btnAtender);
         btnAtender.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
                 AtenderPedido();
             }
         });
+        //btnAtender.setVisibility(View.GONE);
 
+        btnFinalizar = (Button) findViewById(R.id.btnFinalizar);
         btnFinalizar.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
                 FinalizarPedido();
             }
         });
+        btnFinalizar.setVisibility(View.INVISIBLE);
+        dlgFinalizarPedido = new Dialog(this);
 
+        btnIncidente = (Button) findViewById(R.id.btnIncidente);
         btnIncidente.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
                 Incidente();
             }
         });
+        btnIncidente.setVisibility(View.INVISIBLE);
+
+        dlgRegistrarIndicencia = new Dialog(this);
+    }
+
+    public void ShowFinalizarPopup(){
+        EditText edtObservaciones;
+        TextView txtclose;
+        Button btnFinalizarPedido;
+        dlgFinalizarPedido.setContentView(R.layout.finalizarpopup);
+        txtclose = (TextView)  dlgFinalizarPedido.findViewById(R.id.txtclose);
+        edtObservaciones = (EditText) dlgFinalizarPedido.findViewById(R.id.edtObservaciones);
+        btnFinalizarPedido = (Button) dlgFinalizarPedido.findViewById(R.id.btnFinalizarPedido);
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlgFinalizarPedido.dismiss();
+            }
+        });
+        btnFinalizarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Agregar Guardado de finalizacion de Atencion
+                dlgFinalizarPedido.dismiss();
+            }
+        });
+        dlgFinalizarPedido.show();
+    }
+
+    public void ShowInicdenciaPopup(){
+        EditText edtObservaciones;
+        TextView txtclose;
+        Button btnGuardarIncidente;
+        dlgRegistrarIndicencia.setContentView(R.layout.incidenciapopup);
+        txtclose = (TextView)  dlgRegistrarIndicencia.findViewById(R.id.txtclose);
+        edtObservaciones = (EditText) dlgRegistrarIndicencia.findViewById(R.id.edtObservaciones);
+        btnGuardarIncidente = (Button) dlgRegistrarIndicencia.findViewById(R.id.btnGuardarIncidente);
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlgRegistrarIndicencia.dismiss();
+            }
+        });
+        btnGuardarIncidente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Agregar Guardado de incidente de Atencion
+                dlgRegistrarIndicencia.dismiss();
+            }
+        });
+        dlgRegistrarIndicencia.show();
     }
 
     private void AtenderPedido(){
-
+        btnAtender.setVisibility(View.INVISIBLE);
+        btnFinalizar.setVisibility(View.VISIBLE);
+        btnIncidente.setVisibility(View.VISIBLE);
+        //Agregar Inicio de Atencion
     }
 
     private void FinalizarPedido(){
-
+        ShowFinalizarPopup();
     }
 
     private void Incidente(){
-
+        ShowInicdenciaPopup();
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
