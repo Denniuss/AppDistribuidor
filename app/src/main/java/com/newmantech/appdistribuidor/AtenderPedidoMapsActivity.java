@@ -38,7 +38,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         mapFragment.getMapAsync(this);
 
         idpedido = (TextView) findViewById(R.id.idpedido);
-        idpedido.setText(getIntent().getExtras().getString("curIdpedido"));
+        idpedido.setText(getIntent().getExtras().getString("nidpedido"));
         //String nidpedido = getIntent().getExtras().getString("nidpedido");
 
         btnAtender = (Button) findViewById(R.id.btnAtender);

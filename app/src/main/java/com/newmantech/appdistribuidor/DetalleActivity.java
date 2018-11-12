@@ -58,7 +58,7 @@ public class DetalleActivity extends AppCompatActivity {
         distrito.setText("Distrito: " + getIntent().getExtras().getString("curDistrito"));
         estado.setText("Estado: " + getIntent().getExtras().getString("curEstado"));
         imagen.setImageResource(getIntent().getExtras().getInt("curImagen"));
-        idpedido.setText(String.valueOf(getIntent().getExtras().getString("curIdpedido")));
+        idpedido.setText(String.valueOf(getIntent().getExtras().getInt("curIdpedido")));
         latitud.setText(getIntent().getExtras().getString("curLatitud"));
         longitud.setText(getIntent().getExtras().getString("curLongitud"));
 
