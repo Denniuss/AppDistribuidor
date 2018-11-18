@@ -92,7 +92,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             public void onClick(View v) {
                 //Agregar Guardado de finalizacion de Atencion
                 dlgFinalizarPedido.dismiss();
-
+                Toast.makeText(AtenderPedidoMapsActivity.this,"El pedido fue finalizado con exito",Toast.LENGTH_SHORT).show();
                 finish();
                 Intent intent = new Intent(AtenderPedidoMapsActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -120,6 +120,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             public void onClick(View v) {
                 //Agregar Guardado de incidente de Atencion
                 dlgRegistrarIndicencia.dismiss();
+                Toast.makeText(AtenderPedidoMapsActivity.this,"La incidencia fue registrada con exito",Toast.LENGTH_SHORT).show();
                 finish();
                 Intent intent = new Intent(AtenderPedidoMapsActivity.this, MainActivity.class);
                 startActivity(intent);
