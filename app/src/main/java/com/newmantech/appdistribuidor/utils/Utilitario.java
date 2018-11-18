@@ -5,6 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utilitario {
+
+    public static String baseUrl = "http://192.168.1.14:8077/";
+
     public static boolean isInteger(String pNumber)
     {
         try {
