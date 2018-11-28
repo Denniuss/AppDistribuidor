@@ -107,6 +107,8 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
                     DistribucionService distribucionService = retrofit.create(DistribucionService.class);
                     PedidoPost pedidoTemP = new PedidoPost();
                     pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
+                    pedidoTemP.setEstado(207);
+                    pedidoTemP.setIdUsuario(1);
                     pedidoTemP.setObservacion(edtObservaciones.getText().toString());
 
                     Call<Integer> resultado = distribucionService.finalizarPedido(pedidoTemP);
@@ -163,6 +165,8 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
 
                 DistribucionService distribucionService = retrofit.create(DistribucionService.class);
                 PedidoPost pedidoTemP = new PedidoPost();
+                pedidoTemP.setEstado(206);
+                pedidoTemP.setIdUsuario(1);
                 pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
                 pedidoTemP.setObservacion(edtObservaciones.getText().toString());
 

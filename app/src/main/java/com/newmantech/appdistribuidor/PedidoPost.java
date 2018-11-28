@@ -2,21 +2,43 @@ package com.newmantech.appdistribuidor;
 
 public class PedidoPost {
     private int idPedido;
+    private int estado;
+    private int idUsuario;
     private String observacion;
 
     public PedidoPost() {
 
     }
 
-    public PedidoPost(int idPedido, String observacion)
-    {
-        this.idPedido = idPedido;
-        this.observacion = observacion;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public int getIdPedido(){return idPedido;}
-    public void setIdPedido(int idPedido){this.idPedido = idPedido;}
-    public String getObservacion(){ return observacion;}
-    public void setObservacion(String observacion){ this.observacion = observacion;}
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
 }

@@ -14,10 +14,10 @@ public interface DistribucionService {
     @GET("distribucion/listar/1")
     Call<List<Distribucion>> getListadoDistribucion();
 
-    @POST("distribucion/finalizarPedido")
+    @POST("pedido/actualizarEstadoPedido")
     Call<Integer> finalizarPedido(@Body PedidoPost pedido);
 
-    @POST("distribucion/registrarIncidencia/")
+    @POST("pedido/actualizarEstadoPedido")
     Call<Integer> registrarIncidencia(@Body PedidoPost pedido);
 
 }
