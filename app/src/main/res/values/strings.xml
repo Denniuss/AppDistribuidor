@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppDistribuidor</string>
+    <string name="app_name">AppMenux</string>
     <string name="title_activity_lista_pedidos_grid_view">activity_lista_pedidosGridView</string>
     <string name="title_activity_bio">Biografia</string>
     <string name="title_activity_maps">Map</string>
@@ -14,6 +14,21 @@
     <string name="geo_entercords">Ingrese las coordenadas</string>
     <string name="title_activity_atender_pedido_maps">Map</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tab_principal">TabPrincipalActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
 </resources>

@@ -20,21 +20,43 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".DetalleActivity"
+            android:label="@string/title_activity_bio"
+            android:parentActivityName=".Pre_LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.newmantech.appdistribuidor.Pre_LoginActivity" />
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Iniciar Sesión">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Pre_LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DetalleActivity"
-            android:label="@string/title_activity_bio"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.newmantech.appdistribuidor.MainActivity" />
-        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -50,6 +72,18 @@
         <activity
             android:name=".AtenderPedidoMapsActivity"
             android:label="@string/title_activity_atender_pedido_maps"></activity>
+
+
+        <activity
+            android:name=".MenuActivity"
+            android:label="Menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PerfilActivity"
+            android:label="Perfil"></activity>
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
     </application>
 
 </manifest>
