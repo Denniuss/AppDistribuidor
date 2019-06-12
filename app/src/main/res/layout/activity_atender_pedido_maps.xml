@@ -11,25 +11,24 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         tools:context="com.newmantech.appdistribuidor.AtenderPedidoMapsActivity" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:paddingTop="400dp"
-        android:gravity="center_horizontal">
-
+        android:paddingTop="500dp">
 
 
         <Button
             android:id="@+id/btnAtender"
             android:layout_width="110dp"
             android:layout_height="68dp"
-            android:text="@string/geo_btnAtender"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:text="@string/geo_btnAtender" />
 
         <Button
             android:id="@+id/btnFinalizar"
@@ -46,14 +45,31 @@
             android:text="@string/geo_btnIncidente" />
 
         <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingTop="0dp"
-        android:text="Idpedido"
-        android:id="@+id/idpedido"
-        android:visibility="visible"/>
+            android:id="@+id/idpedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="0dp"
+            android:text="Idpedido"
+            android:visibility="visible" />
 
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="580dp">
+        <Button
+            android:id="@+id/btnRuta"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:text="@string/geo_btnRuta" />
     </LinearLayout>
 
 </FrameLayout>

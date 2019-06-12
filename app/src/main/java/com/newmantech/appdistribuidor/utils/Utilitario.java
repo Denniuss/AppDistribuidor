@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 
 public class Utilitario {
 
-    public static String baseUrl = "http://192.168.1.22:8077/";
+    public static String baseUrl = "http://192.168.1.8:8077/";
+    //public static String baseUrl = "http://192.168.1.5:8077/";
 
     public static boolean isInteger(String pNumber)
     {
