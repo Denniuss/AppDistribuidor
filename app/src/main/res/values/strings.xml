@@ -7,6 +7,7 @@
     <string name="geo_longitud">Longitud</string>
     <string name="geo_btnUbicacion">Obtener Ubicación</string>
     <string name="geo_btnMapa">En mapa</string>
+    <string name="geo_btnRuta">Ruta</string>
     <string name="geo_btnAtender">Atender Pedido</string>
     <string name="geo_btnFinalizar">Finalizar Pedido</string>
     <string name="geo_btnIncidente">Incidencia</string>

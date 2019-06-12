@@ -1,25 +1,27 @@
 package com.newmantech.appdistribuidor;
 
 import android.app.Dialog;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.content.Intent;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.newmantech.appdistribuidor.utils.TaskLoadedCallback;
 import com.newmantech.appdistribuidor.utils.Utilitario;
 
 import retrofit2.Call;
@@ -27,24 +29,32 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.newmantech.appdistribuidor.utils.FetchURL;
 
-public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.security.Policy;
+
+public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMapReadyCallback, TaskLoadedCallback {
     public Button btnAtender;
     public Button btnFinalizar;
     public Button btnIncidente;
+    public Button btnRuta;
     private GoogleMap mMap;
     public Dialog dlgFinalizarPedido;
     public Dialog dlgRegistrarIndicencia;
     public TextView idpedido;
     public EditText edtObservaciones;
+    MarkerOptions place1, place2;
+    Polyline currentPolyline;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atender_pedido_maps);
+
+        btnRuta = (Button) findViewById(R.id.btnRuta);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        //MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         idpedido = (TextView) findViewById(R.id.idpedido);
@@ -80,6 +90,22 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         btnIncidente.setVisibility(View.INVISIBLE);
 
         dlgRegistrarIndicencia = new Dialog(this);
+
+        double nLatitud = getIntent().getExtras().getDouble("nLatitud");
+        double nLongitud = getIntent().getExtras().getDouble("nLongitud");
+
+        place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
+
+        btnRuta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = getUrl(place1.getPosition(),place2.getPosition(),"driving");
+                new FetchURL(AtenderPedidoMapsActivity.this).execute(url,"driving");
+
+            }
+        });
+
     }
 
     public void ShowFinalizarPopup(){
@@ -204,6 +230,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         btnFinalizar.setVisibility(View.VISIBLE);
         btnIncidente.setVisibility(View.VISIBLE);
         //Agregar Inicio de Atencion
+
     }
 
     private void FinalizarPedido(){
@@ -240,69 +267,38 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         double nLatitud = getIntent().getExtras().getDouble("nLatitud");
         double nLongitud = getIntent().getExtras().getDouble("nLongitud");
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(nLatitud, nLongitud);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Estoy aquí"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18));
-/*
-        mMap.setMinZoomPreference(20);
-        mMap.setMaxZoomPreference(20);
+        place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        LatLng sjl = new LatLng(-12.003887, -77.06022);
-        mMap.addMarker(new MarkerOptions().position(sjl).title("SJL").draggable(true));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sjl));
+        LatLng pedido = new LatLng(nLatitud, nLongitud);
+        LatLng almacen = new LatLng(-12.0746749,-77.056573);
+/*        mMap.addMarker(new MarkerOptions().position(pedido).title("pedido"));
+        mMap.addMarker(new MarkerOptions().position(pedido).title("pedido"));*/
+        mMap.addMarker(place1);
+        mMap.addMarker(place2);
 
-        CameraPosition camera = new CameraPosition.Builder()
-                .target(sjl)
-                .zoom(18)
-                .bearing(0)
-                .tilt(30)
-                .build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camera));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(almacen));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(almacen,18));
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Toast.makeText(AtenderPedidoMapsActivity.this,"Click on: \n" +
-                "Latitud:" + latLng.latitude + "\n" +
-                "Longitud" + latLng.longitude, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                Toast.makeText(AtenderPedidoMapsActivity.this,"Click on: \n" +
-                        "Latitud:" + latLng.latitude + "\n" +
-                        "Longitud" + latLng.longitude, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                Toast.makeText(AtenderPedidoMapsActivity.this,"Click on: \n" +
-                        "Latitud:" + marker.getPosition().latitude + "\n" +
-                        "Longitud" + marker.getPosition().longitude, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-        */
-        }
     }
+    private String getUrl(LatLng origin, LatLng destino, String direcctionMode){
+            String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+            String str_dest = "destination=" + destino.latitude + "," + destino.longitude;
+            String mode = "mode=" + direcctionMode;
+            String parameters = str_origin + "&" + str_dest + "&" + mode;
+            String output = "json";
+            String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.google_maps_key);
+            return url;
+    }
+
+
+    @Override
+    public void onTaskDone(Object... values) {
+        if(currentPolyline != null)
+            currentPolyline.remove();
+        currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
+
+    }
+}
 
