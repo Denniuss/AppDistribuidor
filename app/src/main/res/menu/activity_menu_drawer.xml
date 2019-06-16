@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_bandeja"
+            android:title="Distribuciones" />
+<!--        <item
+            android:id="@+id/nav_habilidades"
+            android:title="Habilidades" />
+        <item
+            android:id="@+id/nav_necesidades"
+            android:title="Necesidades" />
+        <item
+            android:id="@+id/nav_buscador"
+            android:title="Buscador" />-->
+        <item
+            android:id="@+id/nav_cerrar_sesion"
+            android:title="Cerrar Sesión" />
+    </group>
+
+</menu>
