@@ -84,7 +84,7 @@ public class MenuActivity extends AppCompatActivity
 
             Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             //intent.putExtra("item", result);
-            System.out.print("intent  " + intent );
+            System.out.print("intent  " + intent);
             startActivity(intent);
 
             //fragment = new OpcionesFragment();
@@ -94,7 +94,11 @@ public class MenuActivity extends AppCompatActivity
             //fragment = new OpcionesFragment();
         } else if (id == R.id.nav_buscador) {*/
 
-        } else if (id == R.id.nav_cerrar_sesion) {
+        } else if (id == R.id.nav_volveralmacen) {
+            //fragment = new VolverAlmacenFragment();
+            Intent newActivity = new Intent(this,RegresarAlmacenActivity.class);
+            startActivity(newActivity);
+    } else if (id == R.id.nav_cerrar_sesion) {
             Intent intent = new Intent(MenuActivity.this, Pre_LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

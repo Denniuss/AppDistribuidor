@@ -84,12 +84,19 @@
                     android:orientation="horizontal"
                     android:gravity="center_horizontal">
 
+
+
                     <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/directions"
+                        android:drawablePadding="8dp"
                         android:id="@+id/btnMapa"
-                        android:layout_width="130dp"
-                        android:layout_height="68dp"
-                        android:layout_margin="7dp"
-                        android:text="@string/geo_btnMapa" />
+                        android:textColor="@android:color/white"
+                        app:backgroundTint="#0C1FC7"
+                        android:text="Ver Mapa"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
 
                 </LinearLayout>
 

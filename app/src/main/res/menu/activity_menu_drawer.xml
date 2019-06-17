@@ -4,10 +4,15 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+    <item
+        android:icon="@android:drawable/ic_dialog_email"
+        android:id="@+id/nav_bandeja"
+        android:title="Distribuciones" />
         <item
-            android:id="@+id/nav_bandeja"
-            android:title="Distribuciones" />
-<!--        <item
+            android:id="@+id/nav_volveralmacen"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Retornar al almacén" />
+        <!--        <item
             android:id="@+id/nav_habilidades"
             android:title="Habilidades" />
         <item

@@ -1,9 +1,12 @@
 package com.newmantech.appdistribuidor;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +40,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     public Button btnAtender;
     public Button btnFinalizar;
     public Button btnIncidente;
-    public Button btnRuta;
+
     private GoogleMap mMap;
     public Dialog dlgFinalizarPedido;
     public Dialog dlgRegistrarIndicencia;
@@ -51,7 +54,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atender_pedido_maps);
 
-        btnRuta = (Button) findViewById(R.id.btnRuta);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         //MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -96,16 +99,6 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
 
         place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
         place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
-
-        btnRuta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = getUrl(place1.getPosition(),place2.getPosition(),"driving");
-                new FetchURL(AtenderPedidoMapsActivity.this).execute(url,"driving");
-
-            }
-        });
-
     }
 
     public void ShowFinalizarPopup(){
@@ -254,6 +247,14 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+          //  ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        //{
+        //    retun;
+        //}
+
+       // mMap.setMyLocationEnabled(true);
+
         UiSettings mapUtils = mMap.getUiSettings();
         //Habilita el zoom
         mapUtils.setZoomControlsEnabled(true);
@@ -270,6 +271,8 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
         place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
 
+        String url = getUrl(place1.getPosition(),place2.getPosition(),"driving");
+        new FetchURL(AtenderPedidoMapsActivity.this).execute(url,"driving");
         // Add a marker in Sydney and move the camera
         LatLng pedido = new LatLng(nLatitud, nLongitud);
         LatLng almacen = new LatLng(-12.0746749,-77.056573);
@@ -279,7 +282,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         mMap.addMarker(place2);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(almacen));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(almacen,18));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(almacen,13));
 
     }
     private String getUrl(LatLng origin, LatLng destino, String direcctionMode){

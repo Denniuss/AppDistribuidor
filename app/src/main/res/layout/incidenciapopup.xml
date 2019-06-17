@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/orange"
     android:padding="5dp"
     android:layout_gravity="center">
 
@@ -34,13 +34,25 @@
             android:id="@+id/edtObservaciones"
             />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
         <Button
             android:id="@+id/btnGuardarIncidente"
-            android:layout_width="110dp"
-            android:layout_height="68dp"
-            android:layout_margin="10dp"
-            android:text="@string/geo_btnGuardarIncidente"
-            android:layout_gravity="center"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0C1FC7"
+            android:drawableLeft="@drawable/check_circle_b"
+            android:drawablePadding="8dp"
+            android:text="Guardar"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </LinearLayout>

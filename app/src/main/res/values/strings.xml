@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">AppMenux</string>
+    <string name="app_name">Pedidos</string>
     <string name="title_activity_lista_pedidos_grid_view">activity_lista_pedidosGridView</string>
-    <string name="title_activity_bio">Biografia</string>
+    <string name="title_activity_bio">Pedido</string>
     <string name="title_activity_maps">Map</string>
     <string name="geo_latitud">Latitud</string>
     <string name="geo_longitud">Longitud</string>
@@ -31,5 +31,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_regresar_almacen">Map</string>
 
 </resources>

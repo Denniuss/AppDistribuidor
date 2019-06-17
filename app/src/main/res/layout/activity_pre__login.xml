@@ -12,8 +12,8 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondo1" />
+        android:scaleType="center"
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/btnIniciarSession"
@@ -22,7 +22,6 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:background="#46515E"
         android:text="Iniciar Sesión"
         android:textColor="@android:color/white" />
 
