@@ -65,24 +65,43 @@ public class RegresarAlmacenActivity extends FragmentActivity implements OnMapRe
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-       // place2 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        // place2 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
         //place1 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
         UiSettings mapUtils = mMap.getUiSettings();
         mapUtils.setZoomControlsEnabled(true);
         mapUtils.setCompassEnabled(true);
         mapUtils.setMyLocationButtonEnabled(true);
         mapUtils.setMapToolbarEnabled(true);
-        place1 = new MarkerOptions().position(new LatLng(-12.0747749, -77.076573)).title("pedido");
-        place2 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
-        LatLng pedido = new LatLng(-12.0747749, -77.076573);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+            Toast.makeText(this,"Issue with permission",Toast.LENGTH_LONG).show();
+            return;
+        }
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        //Location location = LocationServices.getLastLocation(googleApiClient);
+        fromLatitude = location.getLatitude();
+        fromLongitude = location.getLongitude();
+        //place1 = new MarkerOptions().position(new LatLng(-12.0747749, -77.076573)).title("pedido");
+        place1 = new MarkerOptions().position(new LatLng(fromLatitude, fromLongitude)).title("Ubicación Actua");
+        place2 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("Almacén");
+        LatLng pedido = new LatLng(fromLatitude, fromLongitude);
         LatLng almacen = new LatLng(-12.0746749,-77.056573);
 
         String url = getUrl(place1.getPosition(),place2.getPosition(),"driving");
         new FetchURL(RegresarAlmacenActivity.this).execute(url,"driving");
         mMap.addMarker(place1);
         mMap.addMarker(place2);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(pedido));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pedido,13));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(almacen));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(almacen,13));
         //miUbicacion();
 
     }
