@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface DistribucionService {
 
-    @GET("distribucion/listar/1")
+    @GET("distribucion/listar/34")
     Call<List<Distribucion>> getListadoDistribucion();
 
     @POST("pedido/actualizarEstadoPedido")
