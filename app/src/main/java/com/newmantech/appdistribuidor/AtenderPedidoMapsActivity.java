@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -66,6 +67,41 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
             @Override
             public  void onClick(View v){
                 AtenderPedido();
+
+                //Agregar Guardado Atencion
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(Utilitario.baseUrl)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                DistribucionService distribucionService = retrofit.create(DistribucionService.class);
+                PedidoPost pedidoTemP = new PedidoPost();
+                pedidoTemP.setEstado(Utilitario.ESTADO_PEDIDO_SIMPLE.DISTRIBUIDO_INICIADO_PEDIDO.getCodigo());
+                pedidoTemP.setIdUsuario(Utilitario.idDistriduidor);
+                pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
+                //pedidoTemP.setObservacion(edtObservaciones.getText().toString());
+
+                Call<Integer> resultado = distribucionService.actualizarPedido(pedidoTemP);
+                resultado.enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        Log.i("Atender ", "onResponse: "+response.code());
+                        Log.i("Atender message", "onResponse: "+response.message());
+
+                        if(response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(),"Se inicio la atención del pedido",Toast.LENGTH_SHORT).show();
+
+                            Log.i("Atender", "onResponse: " + response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Log.e("onFaillure chamado ", t.getMessage());
+                    }
+                });
+
+
             }
         });
         //btnAtender.setVisibility(View.GONE);
@@ -94,7 +130,24 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         double nLatitud = getIntent().getExtras().getDouble("nLatitud");
         double nLongitud = getIntent().getExtras().getDouble("nLongitud");
 
-        place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+
+        /* Obtener posicion actual
+            FusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            lt = String.valueOf(location.getLatitude());
+                            ln = String.valueOf((location.getLongitude()));
+                            LatLng Ubica = new LatLng(Float.parseFloat(lt), Float.parseFloat(ln));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Ubica, 15));
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(Float.parseFloat(lt), Float.parseFloat(ln))));
+                        }
+                    }
+                });
+        * */
+
+        //place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        place1 = new MarkerOptions().position(new LatLng(-12.0874807,-77.0501289)).title("UPC");
         place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
 
         btnRuta.setOnClickListener(new View.OnClickListener() {
@@ -133,11 +186,11 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
                     DistribucionService distribucionService = retrofit.create(DistribucionService.class);
                     PedidoPost pedidoTemP = new PedidoPost();
                     pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
-                    pedidoTemP.setEstado(207);
-                    pedidoTemP.setIdUsuario(1);
+                    pedidoTemP.setEstado(Utilitario.ESTADO_PEDIDO_SIMPLE.DISTRIBUIDO_FINALIZADO_PEDIDO.getCodigo());
+                    pedidoTemP.setIdUsuario(Utilitario.idDistriduidor);
                     pedidoTemP.setObservacion(edtObservaciones.getText().toString());
 
-                    Call<Integer> resultado = distribucionService.finalizarPedido(pedidoTemP);
+                    Call<Integer> resultado = distribucionService.actualizarPedido(pedidoTemP);
                     resultado.enqueue(new Callback<Integer>() {
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -191,12 +244,12 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
 
                 DistribucionService distribucionService = retrofit.create(DistribucionService.class);
                 PedidoPost pedidoTemP = new PedidoPost();
-                pedidoTemP.setEstado(206);
-                pedidoTemP.setIdUsuario(1);
+                pedidoTemP.setEstado(Utilitario.ESTADO_PEDIDO_SIMPLE.CON_INCIDENCIA_PEDIDO.getCodigo());
+                pedidoTemP.setIdUsuario(Utilitario.idDistriduidor);
                 pedidoTemP.setIdPedido(Integer.valueOf(idpedido.getText().toString()));
                 pedidoTemP.setObservacion(edtObservaciones.getText().toString());
 
-                Call<Integer> resultado = distribucionService.registrarIncidencia(pedidoTemP);
+                Call<Integer> resultado = distribucionService.actualizarPedido(pedidoTemP);
                 resultado.enqueue(new Callback<Integer>() {
                     @Override
                     public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -229,9 +282,7 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         btnAtender.setVisibility(View.INVISIBLE);
         btnFinalizar.setVisibility(View.VISIBLE);
         btnIncidente.setVisibility(View.VISIBLE);
-        //Agregar Inicio de Atencion
-
-    }
+     }
 
     private void FinalizarPedido(){
         ShowFinalizarPopup();
@@ -267,7 +318,8 @@ public class AtenderPedidoMapsActivity extends FragmentActivity implements OnMap
         double nLatitud = getIntent().getExtras().getDouble("nLatitud");
         double nLongitud = getIntent().getExtras().getDouble("nLongitud");
 
-        place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        //place1 = new MarkerOptions().position(new LatLng(-12.0746749,-77.056573)).title("almacén");
+        place1 = new MarkerOptions().position(new LatLng(-12.0874807,-77.0501289)).title("UPC");
         place2 = new MarkerOptions().position(new LatLng(nLatitud, nLongitud)).title("pedido");
 
         // Add a marker in Sydney and move the camera

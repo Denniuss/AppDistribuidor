@@ -23,6 +23,11 @@ public class Distribucion {
     @SerializedName("estado")
     @Expose
     private String estado;
+
+    @SerializedName("nombreEstado")
+    @Expose
+    private String nombreEstado;
+
     @SerializedName("latitud")
     @Expose
     private String latitud;
@@ -127,4 +132,11 @@ public class Distribucion {
         this.idUsuario = idUsuario;
     }
 
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
+
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
 }

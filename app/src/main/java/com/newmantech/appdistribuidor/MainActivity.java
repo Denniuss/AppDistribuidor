@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         pedidoTemP.setIdPedido(11);
         pedidoTemP.setObservacion("Pedido con incidencia Android");
 
-        Call<Integer> resultado = distribucionService.registrarIncidencia(pedidoTemP);
+        Call<Integer> resultado = distribucionService.actualizarPedido(pedidoTemP);
         resultado.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         pedidoTemP.setIdPedido(11);
         pedidoTemP.setObservacion("Pedido exitoso Android");
 
-        Call<Integer> resultado = distribucionService.finalizarPedido(pedidoTemP);
+        Call<Integer> resultado = distribucionService.actualizarPedido(pedidoTemP);
         resultado.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         DistribucionService distribucionService = retrofit.create(DistribucionService.class);
 
-        Call<List<Distribucion>> lista = distribucionService.getListadoDistribucion();
+        Call<List<Distribucion>> lista = distribucionService.getListadoDistribucion(Utilitario.idDistriduidor);
         lista.enqueue(new Callback<List<Distribucion>>() {
             @Override
             public void onResponse(Call<List<Distribucion>> call, Response<List<Distribucion>> response) {
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     for(Distribucion dis : listaDistribucion ){
                         Log.i("CLIENTE  ", "onResponse: " + dis.getCliente()+"-"+dis.getIdPedido());
 
-                        items.add(new Pedido(dis.getIdPedido(), R.drawable.face01, dis.getCliente(), dis.getDireccion(), dis.getDistrito(), dis.getDescripcion(),dis.getEstado(),dis.getLatitud(),dis.getLongitud(),""));
+                        items.add(new Pedido(dis.getIdPedido(), R.drawable.face01, dis.getCliente(), dis.getDireccion(), dis.getDistrito(), dis.getDescripcion(),dis.getEstado(), dis.getNombreEstado(),dis.getLatitud(),dis.getLongitud(),""));
                     }
                     /*
                     items.add(new Pedido(1,R.drawable.face01, "Marlon Leandro", "Av. Chimu 412 Urb. Zarate", "SJL", "Aniversario","Pendiente","-12.02456","-77.00057",""));

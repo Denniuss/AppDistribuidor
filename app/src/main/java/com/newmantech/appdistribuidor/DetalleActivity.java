@@ -22,6 +22,7 @@ public class DetalleActivity extends AppCompatActivity {
     public TextView latitud;
     public TextView longitud;
     public TextView idpedido;
+    public TextView idpedidoLabel;
     public Button btnMapa;
 
     Fragment currentFragment;
@@ -51,6 +52,8 @@ public class DetalleActivity extends AppCompatActivity {
         latitud = (TextView) findViewById(R.id.latitud);
         longitud = (TextView) findViewById(R.id.longitud);
         btnMapa = (Button) findViewById(R.id.btnMapa);
+        idpedidoLabel = (TextView) findViewById(R.id.idpedidoLabel);
+
 
 
         cliente.setText(getIntent().getExtras().getString("curCliente"));
@@ -61,6 +64,8 @@ public class DetalleActivity extends AppCompatActivity {
         idpedido.setText(String.valueOf(getIntent().getExtras().getInt("curIdpedido")));
         latitud.setText(getIntent().getExtras().getString("curLatitud"));
         longitud.setText(getIntent().getExtras().getString("curLongitud"));
+        idpedidoLabel.setText("Pedido: " +String.valueOf(getIntent().getExtras().getString("curIdpedidoLabel")));
+
 
         btnMapa.setOnClickListener(new View.OnClickListener(){
             @Override

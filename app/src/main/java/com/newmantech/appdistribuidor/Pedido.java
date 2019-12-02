@@ -6,18 +6,20 @@ public class Pedido {
     private String distrito;
     private String descripcion;
     private String estado;
+    private String nombreEstado;
     //private String imagenurl;
     private int imagen;
     private String latitud;
     private String longitud;
     private int idPedido;
     private String observacion;
+    private String idPedidoLabel;
 
     public Pedido() {
 
     }
 
-    public Pedido(/*String imagenurl*/int idPedido, int imagen, String cliente, String direccion, String distrito, String descripcion, String estado, String latitud, String longitud,String observacion)
+    public Pedido(/*String imagenurl*/int idPedido, int imagen, String cliente, String direccion, String distrito, String descripcion, String estado, String nombreEstado, String latitud, String longitud,String observacion)
     {
         this.idPedido = idPedido;
         this.cliente = cliente;
@@ -25,6 +27,7 @@ public class Pedido {
         this.distrito = distrito;
         this.descripcion = descripcion;
         this.estado = estado;
+        this.nombreEstado = nombreEstado;
         this.imagen = imagen;
         //this.imagenurl = imagenurl;
         this.latitud = latitud;
@@ -59,4 +62,19 @@ public class Pedido {
     public String getObservacion(){ return observacion;}
     public void setObservacion(String observacion){ this.observacion = observacion;}
 
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
+
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
+
+    public String getIdPedidoLabel() {
+        return idPedidoLabel;
+    }
+
+    public void setIdPedidoLabel(String idPedidoLabel) {
+        this.idPedidoLabel = idPedidoLabel;
+    }
 }

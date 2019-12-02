@@ -23,6 +23,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
         public TextView direccion;
         public TextView distrito;
         public TextView estado;
+        public TextView idpedidoLabel;
         public TextView idpedido;
 
         public PedidoViewHolder(View v) {
@@ -35,6 +36,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
             distrito = (TextView) v.findViewById(R.id.distrito);
             estado = (TextView) v.findViewById(R.id.estado);
             idpedido = (TextView) v.findViewById(R.id.idpedido);
+            idpedidoLabel = (TextView) v.findViewById(R.id.idpedidoLabel);
         }
     }
 
@@ -67,8 +69,9 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
         viewHolder.cliente.setText(items.get(i).getCliente());
         viewHolder.direccion.setText("Dirección: " + items.get(i).getDireccion());
         viewHolder.distrito.setText("Distrito: " + String.valueOf(items.get(i).getDistrito()));
-        viewHolder.estado.setText("Estado: " + String.valueOf(items.get(i).getEstado()));
+        viewHolder.estado.setText("Estado: " + String.valueOf(items.get(i).getNombreEstado()));
         viewHolder.idpedido.setText(String.valueOf(items.get(i).getIdPedido()));
+        viewHolder.idpedidoLabel.setText("Pedido: " + String.valueOf(items.get(i).getIdPedido()));
 
         viewHolder.pedidoCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +82,11 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.PedidoVi
                 bundle.putString("curCliente", items.get(i).getCliente());
                 bundle.putString("curDireccion", items.get(i).getDireccion());
                 bundle.putString("curDistrito", items.get(i).getDistrito());
-                bundle.putString("curEstado", items.get(i).getEstado());
+                bundle.putString("curEstado", items.get(i).getNombreEstado());
                 bundle.putInt("curIdpedido", items.get(i).getIdPedido());
                 bundle.putString("curLatitud", items.get(i).getLatitud());
                 bundle.putString("curLongitud", items.get(i).getLongitud());
+                bundle.putString("curIdpedidoLabel", items.get(i).getIdPedido()+"");
 
                 Intent iconIntent = new Intent(view.getContext(), DetalleActivity.class);
                 iconIntent.putExtras(bundle);

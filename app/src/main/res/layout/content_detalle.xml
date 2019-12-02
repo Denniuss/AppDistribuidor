@@ -77,6 +77,14 @@
                     android:id="@+id/idpedido"
                     android:visibility="invisible"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="0dp"
+                    android:text="IdpedidoLabel"
+                    android:id="@+id/idpedidoLabel"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
